@@ -139,7 +139,6 @@ def create_app(test_config=None):
         new_difficulty = body.get('difficulty', None)
         new_category = body.get('category', None)
         search = body.get('searchTerm', None)
-        
         try:
             if search:
                 questions = Question.query.filter(Question.question.ilike('%{}%'.format(search))).all()
