@@ -4,7 +4,9 @@ from flask_sqlalchemy import SQLAlchemy
 import json
 
 database_name = 'trivia'
-database_path = 'postgresql://{}/{}'.format('localhost:5432', database_name)
+database_path = 'postgresql://{}:{}@{}/{}'.format(
+    'postgres', 'P%40ssw0rd', 'localhost:5432', database_name
+)
 
 db = SQLAlchemy()
 
@@ -70,6 +72,8 @@ class Category(db.Model):
 
     def __init__(self, type):
         self.type = type
+    def format_dic(self):
+        return { self.id : self.type}
 
     def format(self):
         return {
